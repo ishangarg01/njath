@@ -1,0 +1,55 @@
+services:
+    backend:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: backend-image
+        container_name: backend
+        restart: unless-stopped
+        ports:
+            - '8080:8080'
+        depends_on:
+            - database
+        environment:
+            PORT : 8080
+            MONGODB_URL : mongodb://root:admin@database:27017/njath?authSource=admin
+        networks:
+            - app-network
+    database:
+        image: mongo:latest
+        container_name: database
+        restart: unless-stopped
+        ports:
+            - '27017:27017'
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: admin
+            MONGO_INITDB_DATABASE: njath
+        networks:
+            - app-network
+        volumes:
+            - ./database-data:/data/db
+    db-admin:
+        image: mongo-express:latest
+        container_name: db-admin
+        restart: unless-stopped
+        ports:
+            - '8081:8081'
+        depends_on:
+            - database
+        networks:
+            - app-network
+        environment:
+            ME_CONFIG_MONGODB_ADMINUSERNAME: root
+            ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+            ME_CONFIG_MONGODB_URL: mongodb://root:admin@database:27017/
+            ME_CONFIG_MONGODB_SERVER: database
+            ME_CONFIG_MONGODB_PORT: 27017
+
+volumes:
+    database-data:
+        driver: local
+
+networks:
+    app-network:
+        driver: bridge

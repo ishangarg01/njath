@@ -1,0 +1,40 @@
+.level {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-width: 200px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .level p {
+    /* font-weight: bold; */
+    margin: 0;
+  }
+  
+  .level span {
+    display: block;
+  }
+  
+  .level.locked {
+    background-color: #ddd;
+  }
+  
+  .level.unlocked {
+    background-color: #66bb6a;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .level.unlocked:hover {
+    background-color: #4a993f;
+  }
+  
+  .completed {
+    content: '\2713';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 16px;
+  }
+  

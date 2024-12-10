@@ -1,0 +1,43 @@
+
+.tempbg{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000080;
+}
+.spinner{
+    /* position: absolute;
+height: 12px;
+width: 12px;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%); */
+ /* background-color: white; */
+ /* border-radius: 50%; */
+ animation: rotate 2s  steps(256) infinite; 
+ /* order: 0; */
+ /* overflow: hidden; */
+
+}
+
+
+@keyframes rotate {
+    0% {
+      transform: rotate(0deg); 
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes lagFrames {
+    0%, 100% {
+      opacity: 0;
+    }
+    25%, 75% {
+      opacity: 1;
+    }
+  }
+ 
